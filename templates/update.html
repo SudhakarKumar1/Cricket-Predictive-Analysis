@@ -1,0 +1,37 @@
+<!--Store this code in 'update.html' file inside the 'templates' folder-->
+<html lang="en">
+	<head>
+		<title>update</title>
+		<link rel="stylesheet" href="static\css\style.css">
+	</head>
+	<body bgcolor="#e6ffee">
+		<div class="one">
+			<div class="two">
+				<h1>Side Bar</h1>
+				<ul>
+					<li><a href="{{url_for('index')}}">Home</a></li>
+					<li><a href="{{url_for('display')}}">User Details</a></li>
+					<li class="active"><a href="{{url_for('update')}}">Edit Profile</a></li>
+					<li><a href="{{url_for('logout')}}">Log out</a></li>
+				</ul>
+			</div>
+			<div class="content" align="center">
+				<div class="topbar">
+					<h2>  UPDATE PAGE </h2>					
+				</div></br></br>
+				<div class="contentbar">
+				<h1>Fill Your Details to Update</h1></br>
+			<form action="{{ url_for('update') }}" method="post" autocomplete="off">
+					<div class="msg">{{ msg }}</div>
+					Email ID: <input type="email" name="email" placeholder="Enter Your Email ID" class="textbox" id="email" required></br></br>
+                    Username: <input type="text" name="username" placeholder="Enter Your Username" class="textbox" id="username" required></br></br>
+					Password: <input type="password" name="password" placeholder="Enter Your Password" class="textbox" id="password" required></br></br>
+					Country: <input type="text" name="country" placeholder="Enter Your Country" class="textbox" id="country" required></br></br>
+					<input type="submit" class="btn" value="Update">
+			</form>					
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
