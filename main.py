@@ -209,7 +209,7 @@ def reset(token):
             msg='Your token is invalid'
             return redirect('/')
 
-    return render_template('/reset.html')
+    return render_template('/reset.html', msg = msg)
 
 
 
