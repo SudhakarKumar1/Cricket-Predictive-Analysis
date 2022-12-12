@@ -48,16 +48,17 @@ def login():
         cursor.execute('SELECT * FROM users WHERE username = %s',(username,))
          # Fetch one record and return result
         user = cursor.fetchone()
-        check = bcrypt.check_password_hash(user['password'], password)
-        if check:
-                session['loggedin'] = True
-                session['id'] = user['id']
-                session['username'] = user['username']
-                session['email'] = user['email']
-                msg='Logged in successfully!'
-                return render_template('index.html')
-        else:    
+        try:
+            check = bcrypt.check_password_hash(user['password'], password)
+            session['loggedin'] = True
+            session['id'] = user['id']
+            session['username'] = user['username']
+            session['email'] = user['email']
+            msg='Logged in successfully!'
+            return render_template('index.html')
+        except:
              msg = 'Incorrect username/password!'
+
     return render_template('login.html', msg = msg)
 
 @app.route('/logout')
@@ -143,7 +144,7 @@ def update():
             elif not username or not password or not email:
                 msg = 'Please fill out the form !'
             else:
-                cursor.execute('UPDATE users SET  username =% s, password =% s, email =% s, country =% s WHERE id =% s', (username, password, email, country, (session['id'], ), ))
+                cursor.execute('UPDATE users SET  username =%s, password =%s, email =%s, country =%s WHERE id =%s', (username, password, email, country, (session['id'], ), ))
                 mysql.connection.commit()
                 msg = 'You have successfully updated !'
         elif request.method == 'POST':
@@ -170,10 +171,10 @@ def forgot():
             cursor.execute("UPDATE users SET token= %s WHERE email=%s",(token,email))
             mysql.connection.commit()
             cursor.close()
-            print('Email sent to your inbox')
+            msg='Email sent to your inbox'
             return redirect('/forgot')
         else:
-           print('Email does not match')
+           msg='Email does not match'
             
 
     return render_template('forgot.html')
