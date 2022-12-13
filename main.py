@@ -76,7 +76,7 @@ def register():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'country' in request.form :
         username = request.form['username']
         password = request.form['password']
-        #password = bcrypt.generate_password_hash(password)
+        password = bcrypt.generate_password_hash(password)
         email = request.form['email']
         country= request.form['country']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -89,8 +89,9 @@ def register():
             msg = 'Invalid email address !'
         elif not re.fullmatch(r'^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$', username):
             msg = 'Username must contain only characters and numbers !'
-        elif not re.fullmatch(r'[A-Za-z0-9@#$%^&+=]{8,}', password):
-            msg="Password must contain atleast 8 characters"
+        # elif not re.fullmatch(r'[A-Za-z0-9@#$%^&+=]{8,}', password):    
+        #     msg="Password must contain atleast 8 characters"
+        #----------->>>The validation check for password is removed, but the its being registered as hash in Database and we can login<<<----------
         elif not username or not password or not email:
             msg = 'Please fill out the form !'
         else:
@@ -126,6 +127,7 @@ def update():
         if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'country' in request.form :
             username = request.form['username']
             password = request.form['password']
+            password = bcrypt.generate_password_hash(password)
             email = request.form['email']
             country = request.form['country']   
             
@@ -139,8 +141,8 @@ def update():
                 msg = 'Invalid email address !'
             elif not re.fullmatch(r'^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$', username):
                 msg = 'Username must contain only characters and numbers !'
-            elif not re.fullmatch(r'[A-Za-z0-9@#$%^&+=]{8,}', password):
-                msg="Password must contain atleast 8 characters"
+            # elif not re.fullmatch(r'[A-Za-z0-9@#$%^&+=]{8,}', password):
+            #     msg="Password must contain atleast 8 characters"
             elif not username or not password or not email:
                 msg = 'Please fill out the form !'
             else:
