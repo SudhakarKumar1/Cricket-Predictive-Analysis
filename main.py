@@ -24,11 +24,11 @@ app.config['MYSQL_PASSWORD'] ='admin123'
 app.config['MYSQL_DB'] = 'profile'
 
 
-app.config['MAIL_SERVER'] = 'smtp.mail.yahoo.com'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = "sudhakarkumar80@yahoo.com"
-app.config['MAIL_PASSWORD'] = "faqusromkvsrvnyg"
+app.config['MAIL_USERNAME'] = "ahtalreja95@gmail.com"
+app.config['MAIL_PASSWORD'] = "fpdagnbywlgpheql"
 mail = Mail(app)
 
 
@@ -166,7 +166,7 @@ def forgot():
         result = cursor.execute("SELECT * FROM users WHERE email=%s",(email,))
         if result > 0:
             data = cursor.fetchone()
-            msg= Message(subject="forgot password request", sender="sudhakarkumar80@yahoo.com", recipients=[email])
+            msg= Message(subject="forgot password request", sender="ahtalreja95@gmail.com", recipients=[email])
             msg.body = render_template("sent.html", token=token, data=data)
             mail.send(msg) 
             cursor = mysql.connection.cursor()
