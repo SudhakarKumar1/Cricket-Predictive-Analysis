@@ -1,0 +1,23 @@
+<form action="{{ url_for('edit') }}" method="post">
+	{% if msg is defined and msg %}
+		<div class="alert alert-warning">{{ msg }}</div>
+	{% endif %}
+	<div class="form-group">
+		<label for="name">Name:</label>
+		<input type="text" class="form-control" id="name" name="name" value="{{ editUser.username }}">
+	</div>
+	<div class="form-group">
+		<label for="role">Role:</label>
+		<select class="form-control" id="role" name="role">
+			<option value="admin" {% if editUser.role == 'admin' %}selected{% endif %}>Admin</option>
+			<option value="user"  {% if editUser.role == 'user' %}selected{% endif %}>User</option>			
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="country">Country:</label>
+		<input type="text" class="form-control" id="country" name="country" value="{{ editUser.country }}">
+	</div>
+		
+	<input type="hidden" id="userid" name="userid" value="{{ editUser.userid }}">
+	<button type="submit" class="btn btn-primary">Save</button>		
+</form>
