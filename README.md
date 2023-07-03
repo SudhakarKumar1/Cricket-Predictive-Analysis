@@ -62,7 +62,6 @@ The project employs several machine learning models, including but not limited t
 - Linear Regression
 - Random Forests
 - Support Vector Machines (SVM)
-- Recurrent Neural Networks (RNN)
 - Extreme Gradient Boost (XGB)
 
 These models are trained on the historical cricket data to capture patterns and make predictions based on the chosen task.
