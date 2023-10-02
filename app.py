@@ -7,6 +7,7 @@ import re
 import os
 import mysql.connector
 import uuid
+#import uploadCSV from "./templates/script.js"
 
 
 app = Flask(__name__)
@@ -18,9 +19,9 @@ bcrypt = Bcrypt(app)
 
 
 #database connection details below
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] ='admin123'
+app.config['MYSQL_HOST'] = '16.16.182.154'
+app.config['MYSQL_USER'] = 'sudo'
+app.config['MYSQL_PASSWORD'] ='Admin@123'
 app.config['MYSQL_DB'] = 'profile'
 
 
@@ -28,7 +29,7 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USERNAME'] = "ahtalreja95@gmail.com"
-app.config['MAIL_PASSWORD'] = "fpdagnbywlgpheql"
+app.config['MAIL_PASSWORD'] = "raggnwlysigxeprs"
 mail = Mail(app)
 
 
@@ -50,6 +51,10 @@ def login():
         user = cursor.fetchone()
         try:
             check = bcrypt.check_password_hash(user['password'], password)
+            print(check)
+            if(not check):
+                session['loggedin'] = False
+                return render_template('login.html', msg="Incorrect username/password")
             session['loggedin'] = True
             session['id'] = user['id']
             session['username'] = user['username']
@@ -214,6 +219,35 @@ def reset(token):
     return render_template('/reset.html', msg = msg)
 
 
+@app.route('/upload', methods=['POST'])
+def upload():
+    file = request.files['file']
+    # Process the file as needed (e.g., read the contents into a variable)
+    file_contents = str(file.read(),'utf-8')
+
+    rows  = []
+    data = file_contents.split("\n")
+    for row in data:
+        rows.append(row.split(','))
+    return {'data': rows}
+
+@app.route("/analysis1")
+def analysis1():
+    if 'loggedin' in session:
+        return render_template("analysis1.html")
+    return redirect(url_for('login'))
+
+@app.route("/analysis2")
+def analysis2():
+    if 'loggedin' in session:
+        return render_template("analysis2.html")
+    return redirect(url_for('login'))
+
+@app.route("/analysis3")
+def analysis3():
+    if 'loggedin' in session:
+        return render_template("analysis3.html")
+    return redirect(url_for('login'))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 3306)), debug=True)

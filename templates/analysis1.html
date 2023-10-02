@@ -1,0 +1,53 @@
+<html lang="en">
+    <head>
+        <title>Home Page</title>
+        <link rel="stylesheet" href="\static\css\style.css">
+    </head>
+
+ 
+    <body >
+        <div class="one">
+            <div class="two">
+                <h1>Side Bar</h1>
+                <ul>
+                    <li><a href="{{url_for('index')}}">Upload Dataset</a></li>
+                    <li class="active"><a href="{{url_for('analysis1')}}">AUS vs ENG Analysis</a></li>
+                    <li><a href="{{url_for('analysis2')}}">AUS vs IND Analysis</a></li>
+                    <li><a href="{{url_for('analysis3')}}">Team wise Analysis</a></li>
+                    <li><a href="{{url_for('display')}}">User Details</a></li>
+                    <li><a href="{{url_for('update')}}">Edit Details</a></li>
+                    <li><a href="{{url_for('logout')}}">Log out</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="topbar">
+                    <h2>England Tour to Australia </h2>
+                    <h2>Graphical Representation</h2>
+                    <br>
+                    <br>
+                    <a href="#/"><img src="{{url_for('static',filename='matches per year.png')}}",width="400" 
+                        height="400" /></a> 
+                        <h2>Number of Matches and Win Ratio</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='win ratio.png')}}",width="400" 
+                        height="400" /></a> 
+                    <a href="#/"><img src="{{url_for('static',filename='winner value.png')}}",width="400" 
+                        height="400" /></a> 
+                        <h2>Model Accuracy</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='modelaccuracy.png')}}",width="100" 
+                        height="100" /></a> 
+                        <h2>Predictions according to venue</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='pred venue.png')}}",width="400" 
+                        height="400" /></a> 
+                    
+                    
+                </div></br></br>
+                <div class="contentbar">
+                     <div class="msg">{{ msg }}</div>
+                </div> 
+
+                      </body>
+                    </head>     
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<html lang="en">
+    <head>
+        <title>Home Page</title>
+        <link rel="stylesheet" href="\static\css\style.css">
+    </head>
+
+ 
+    <body >
+        <div class="one">
+            <div class="two">
+                <h1>Side Bar</h1>
+                <ul>
+                    <li><a href="{{url_for('index')}}">Upload Dataset</a></li>
+                    <li><a href="{{url_for('analysis1')}}">AUS vs ENG Analysis</a></li>
+                    <li class="active"><a href="{{url_for('analysis2')}}">AUS vs IND Analysis</a></li>
+                    <li><a href="{{url_for('analysis3')}}">Team wise Analysis</a></li>
+                    <li><a href="{{url_for('display')}}">User Details</a></li>
+                    <li><a href="{{url_for('update')}}">Edit Details</a></li>
+                    <li><a href="{{url_for('logout')}}">Log out</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="topbar">
+                    <h2>Australia Tour to India </h2>
+                    <p style="color:#000000">In this analysis we will attempt to predict the outcomes of the Australia tour of India 2019 ODI matches. First we will try to predict the match by match outcome. Then we shall try to find the highest wicket taker.</p>
+                    <h2>Model Accuracy</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='modelaccuracy2.png')}}",width="100" 
+                        height="100" /></a> 
+                    <h2>Predictions according to venue</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='pred venue 2.png')}}",width="400" 
+                        height="400" /></a>
+                    <h2>Player intensity of Indian team</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='intensity graph india.png')}}",width="400" 
+                       height="400" /></a> 
+                    <h2>Player intensity of Australian team</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='intensity graph aus.png')}}",width="400" 
+                          height="400" /></a> 
+                    <p style="color:#000000">Comparing the above two results we find that <b>Virat Kohli</b> has the highest chance of being the top scorer as he has the highest <b>trait</b> parameter</p>
+                    <h2>Player intensity of Both teams</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='player intensity combined.png')}}",width="400" 
+                        height="400" /></a> 
+                    <h2>Bowling Predictions</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='bowling strike rate.png')}}",width="500" 
+                        height="500" /></a>
+                    <p style="color: #000000;">Based on the bowling strike rate we can predict the highest wicket takers of the match. The above table represents the same. A low bowling strike rate indicates that a bowler takes wickets more frequently. It means that the bowler requires fewer balls, on average, to dismiss a batsman and take a wicket.</p>
+                    <br>
+                    <br>
+                </div></br></br>
+                <div class="contentbar">
+                     <div class="msg">{{ msg }}</div>
+                </div> 
+
+                      </body>
+                    </head>     
+            </div>
+        </div>
+    </body>
+</html>

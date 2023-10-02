@@ -1,0 +1,58 @@
+<html lang="en">
+    <head>
+        <title>Home Page</title>
+        <link rel="stylesheet" href="\static\css\style.css">
+    </head>
+
+ 
+    <body >
+        <div class="one">
+            <div class="two">
+                <h1>Side Bar</h1>
+                <ul>
+                    <li><a href="{{url_for('index')}}">Upload Dataset</a></li>
+                    <li><a href="{{url_for('analysis1')}}">AUS vs ENG Analysis</a></li>
+                    <li><a href="{{url_for('analysis2')}}">AUS vs IND Analysis</a></li>
+                    <li  class="active"><a href="{{url_for('analysis3')}}">Team wise Analysis</a></li>
+                    <li><a href="{{url_for('display')}}">User Details</a></li>
+                    <li><a href="{{url_for('update')}}">Edit Details</a></li>
+                    <li><a href="{{url_for('logout')}}">Log out</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="topbar">
+                    <h2>Team wise Analysis</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='team wise wins.png')}}",width="200" 
+                        height="200" /></a>
+                    <h2>Win Percentages</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='team wise win percentages.png')}}",width="200" 
+                        height="200" /></a>
+                    <h2>Percentage pie chart</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='piechart.png')}}",width="500" 
+                        height="500" /></a>
+                    <h2>Ground wise team won details according to heatmaps</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='heatmap1.png')}}",width="400" 
+                        height="400" /></a>
+                    <a href="#/"><img src="{{url_for('static',filename='heatmap2.png')}}",width="400" 
+                        height="400" /></a>
+                    <a href="#/"><img src="{{url_for('static',filename='heatmap3.png')}}",width="400" 
+                        height="400" /></a>
+                    <h2>Model Accuracy</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='modelaccuracy3.png')}}",width="400" 
+                        height="400" /></a>
+                    <h2>Model Accuracy</h2>
+                    <a href="#/"><img src="{{url_for('static',filename='algo.jpg')}}",width="400" 
+                            height="400" /></a>
+                    <br>
+                    <br>
+                </div></br></br>
+                <div class="contentbar">
+                     <div class="msg">{{ msg }}</div>
+                </div> 
+
+                      </body>
+                    </head>     
+            </div>
+        </div>
+    </body>
+</html>

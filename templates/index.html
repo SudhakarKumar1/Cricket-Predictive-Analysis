@@ -3,13 +3,17 @@
         <title>Home Page</title>
         <link rel="stylesheet" href="\static\css\style.css">
     </head>
+
  
     <body >
         <div class="one">
             <div class="two">
                 <h1>Side Bar</h1>
                 <ul>
-                    <li class="active"><a href="{{url_for('index')}}">Home</a></li>
+                    <li class="active"><a href="{{url_for('index')}}">Upload Dataset</a></li>
+                    <li><a href="{{url_for('analysis1')}}">AUS vs ENG Analysis</a></li>
+                    <li><a href="{{url_for('analysis2')}}">AUS vs IND Analysis</a></li>
+                    <li><a href="{{url_for('analysis3')}}">Team wise Analysis</a></li>
                     <li><a href="{{url_for('display')}}">User Details</a></li>
                     <li><a href="{{url_for('update')}}">Edit Details</a></li>
                     <li><a href="{{url_for('logout')}}">Log out</a></li>
@@ -17,12 +21,60 @@
             </div>
             <div class="content" align="center">
                 <div class="topbar">
-                    <h2>Welcome!!</h2>                       
-                </div></br></br>
-                <div class="contentbar">
-                     <div class="msg">{{ msg }}</div>
-                </div> 
-                 
+                    <h2>Welcome!!</h2>
+                    <head>
+                        <title>CSV File Upload</title>
+                      </head>
+                      <body>
+                        <h1>CSV File Upload</h1>
+                        <div class="container">
+                            <table class="table">
+                              <tbody id="data">
+                          
+                              </tbody>
+                            </table>
+                          </div>
+                        <script>
+                            function uploadCSV() { 
+                            const fileInput = document.getElementById("csvFile");
+                            const file = fileInput.files[0];
+                            var fileReader=new FileReader();
+
+                            if (file) {
+                                const formData = new FormData();
+                                formData.append("file", file);
+
+                                fetch("/upload", {
+                                method: "POST",
+                                body: formData,
+                                })
+                                .then((res)=>res.json())
+                                .then((res) => {
+                                    let tableData = res.data;
+                                    var temp = "";
+                                    tableData.forEach((itemData) => {
+                                        
+                                        temp += "<tr>";
+                                        for (const col of itemData){
+                                        temp += "<td>" + col + "</td>";
+                                        }
+                                        temp+="</tr>";
+                                        
+                                    });
+                                    document.getElementById('data').innerHTML = temp;
+                                })
+                                .catch((error) => {
+                                    console.error("Error uploading file:", error);
+                                });
+                            } else {
+                                console.error("No file selected");
+                            }
+                            }
+                        </script>
+                        <input type="file" id="csvFile" accept=".csv">
+                        <button onclick="uploadCSV()">Upload</button>
+                      </body>
+                    </head>     
             </div>
         </div>
     </body>
